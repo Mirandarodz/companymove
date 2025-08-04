@@ -20,3 +20,5 @@ yarn-error.log*
 # variables de entorno privadas
 .env
 .env.*
+
+public/video/fondo.mp4
