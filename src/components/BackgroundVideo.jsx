@@ -1,32 +1,42 @@
-import { useEffect, useRef } from 'react'
+import React, { useRef, useState } from 'react';
+import './backgroundVideo.css';
 
 export default function BackgroundVideo() {
-  const videoRef = useRef(null)
+  const videoRef = useRef(null);
+  const [muted, setMuted] = useState(false);
+  const [paused, setPaused] = useState(false);
 
-  useEffect(() => {
-    const video = videoRef.current
-    if (video && video.paused) {
-      video.play().catch(() => {})
+  const toggleMute = () => {
+    const video = videoRef.current;
+    video.muted = !video.muted;
+    setMuted(video.muted);
+  };
+
+  const togglePlay = () => {
+    const video = videoRef.current;
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
     }
-  }, [])
+    setPaused(video.paused);
+  };
 
   return (
-    <video
-      ref={videoRef}
-      src="/video/fondo.mp4"
-      autoPlay
-      muted
-      loop
-      playsInline
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-        zIndex: -1,
-      }}
-    />
-  )
+    <>
+      <video
+        ref={videoRef}
+        src="/video/fondo.mp4"
+        autoPlay
+        loop
+        playsInline
+        muted={muted}
+        className="background-video"
+      />
+      <div className="video-controls">
+        <button onClick={togglePlay}>{paused ? '▶️' : '⏸'}</button>
+        <button onClick={toggleMute}>{muted ? '🔇' : '🔊'}</button>
+      </div>
+    </>
+  );
 }
