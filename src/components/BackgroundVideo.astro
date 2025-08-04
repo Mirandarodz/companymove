@@ -1,0 +1,90 @@
+---
+// src/components/BackgroundVideo.astro
+---
+<style>
+.video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  background: black;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: black;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+
+.video-controls {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+  display: flex;
+  gap: 10px;
+}
+
+.video-controls button {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+</style>
+
+<div class="video-container">
+  <video id="bg-video" autoplay muted playsinline>
+    <source src="/video/fondo.mp4" type="video/mp4" />
+    Tu navegador no soporta video HTML5.
+  </video>
+</div>
+
+<div class="video-controls">
+  <button id="play-pause">⏸️</button>
+  <button id="mute-unmute">🔊</button>
+</div>
+
+<div class="overlay">
+  <h1>Inicio</h1>
+  <p>Bienvenidos a la página principal.</p>
+  <a href="/about">Ir a Sobre nosotros</a>
+</div>
+
+<script type="module">
+  const video = document.getElementById('bg-video');
+  const playPauseBtn = document.getElementById('play-pause');
+  const muteBtn = document.getElementById('mute-unmute');
+
+  playPauseBtn.addEventListener('click', () => {
+    if (video.paused) {
+      video.play();
+      playPauseBtn.textContent = '⏸️';
+    } else {
+      video.pause();
+      playPauseBtn.textContent = '▶️';
+    }
+  });
+
+  muteBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    muteBtn.textContent = video.muted ? '🔇' : '🔊';
+  });
+</script>
