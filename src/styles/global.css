@@ -1,0 +1,51 @@
+/* 
+  Estilos generales:
+  El contenido de cada sección se adapta al video de fondo.
+*/
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+.contenido-sobre-video {
+  padding: 2rem;
+  color: white;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4); /* semitransparente para mejor legibilidad */
+  border-radius: 1rem;
+  backdrop-filter: blur(5px);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+input, textarea {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+button {
+  padding: 0.7rem;
+  background: #00c98d;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .contenido-sobre-video {
+    position: static;
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,22 @@
+# node_modules (librerías instaladas localmente)
+node_modules/
+
+# compilado de producción
+dist/
+
+# configuración local de editores
+.vscode/
+.idea/
+
+# archivos basura del sistema
+.DS_Store
+Thumbs.db
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# variables de entorno privadas
+.env
+.env.*
